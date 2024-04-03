@@ -1,0 +1,10 @@
+//Program to learn typecasting
+
+#include<iostream>
+using namespace std;
+int a=5;
+
+int main()
+{   cout<<"the address of a is "<<&a<<"\n";
+    cout<<"the address of a is "<<(unsigned long int)&a;
+}

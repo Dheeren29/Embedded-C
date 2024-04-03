@@ -1,0 +1,14 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{   //char str[]={45,46,47};
+    char str[]="Hello world!";
+    cout<<"Size "<<sizeof(str)<<endl;
+    cout<<"length "<<strlen(str)<<endl;
+    
+    cout<<str<<endl;
+    cout<<*str<<endl;
+}
+

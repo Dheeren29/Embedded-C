@@ -1,0 +1,17 @@
+#include <iostream>
+#include <cstdint>
+using namespace std;
+
+int main() 
+{   uint16_t myNumbers[5]={0xF1, 0xF2, 0xF3, 0xF4, 0xF5};                //uint8_t is unsigned short alias name
+    cout<<"size of Array "<<sizeof(myNumbers)<<endl;
+    cout<<"length of Array "<<sizeof(myNumbers)/sizeof(uint16_t)<<endl;
+    
+    cout<<hex<<myNumbers[1]<<endl;               
+    
+    myNumbers[1]=0xF7;                                                  //Array data modification technnique                                    
+    cout<<hex<<myNumbers[1]<<endl;
+    
+    *(myNumbers+1)=0xF9;
+    cout<<hex<<*(myNumbers+1);                                          //Another modification technnique
+}

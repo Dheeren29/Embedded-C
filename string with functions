@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+void displayString(char str[])
+{   cout<<str<<endl;  }
+
+int main()
+{   char name[]="Dheeren Mittal";
+    displayString(name);
+    
+    displayString("I love Indian Army");
+}

@@ -1,0 +1,11 @@
+#include <iostream>
+#include <cstdint>
+using namespace std;
+
+int main()
+{   uint8_t num=1;                              //uint8_t is an alias for unsigned char and is typically used to represent small integers in the range [0, 255]
+    
+    while(num <= 10)
+    {cout<<static_cast<int>(num++)<<endl;}      //if u use uint16_t alias then you can remove static typecast
+
+}

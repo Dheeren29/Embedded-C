@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+long long int data = 0xfffeabcd11112345;
+
+int main()
+{   short *paddress = (short*) &data;                       //char *paddress = (char*)&data; and soon
+    cout << static_cast<void*>(paddress) << "  " << hex << static_cast<int>(*paddress) << endl;
+    paddress = paddress + 1;
+    cout << static_cast<void*>(paddress) << "  " << hex << static_cast<int>(*paddress) << endl;
+    paddress += 1;
+    cout << static_cast<void*>(paddress) << "  " << hex << static_cast<int>(*paddress) << endl;
+}
+
+

@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+struct dataset
+{   char data1; int data2; char data3; short data4; };
+
+int main()
+{   dataset data;
+    data.data1=0x11;
+    data.data2=0xAAAABBBB;
+    data.data3=0xFF;
+    data.data4=0xA5A5;
+    
+    cout<<hex<<static_cast<int>(data.data1)<<endl;
+    
+    struct dataset *pointerdata = &data;
+    (*pointerdata).data1 = 0x22;                         //   pointerdata->data1=0x22;
+    cout<<hex<<static_cast<int>((*pointerdata).data1);
+}

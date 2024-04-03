@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cstdint>
+using namespace std;
+
+struct __attribute__((packed)) dataset
+{   char data1; int data2; char data3; short data4; };     //use of packed attribute might have portability issues, and it is not recommended unless absolutely necessary. It can lead to inefficient memory access on certain architectures.
+
+int main()
+{   dataset data;
+    data.data1=0x11;
+    data.data2=0xffffeeee;
+    data.data3=0x22;
+    data.data4=0xabcd;
+    
+    cout<<"size of struct variable "<<sizeof(data)<<endl;
+    
+    uint8_t *ptr = (uint8_t*)&data;
+    
+    for(uint32_t i=1;i<=sizeof(data);i++)
+    {   cout<<static_cast<void*>(ptr)<<hex<<" "<<static_cast<int>(*ptr)<<endl;
+        ptr++;
+    }
+}
+//Inside results, you will find No zero memory locations as in case of Non-packed structure
+

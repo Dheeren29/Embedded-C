@@ -1,0 +1,16 @@
+#include <iostream>
+#include <cstdint>
+using namespace std;
+
+void displayArray(uint16_t *pointerArray, uint16_t len)
+{   for(int i=0; i<len; i++)
+    {cout<<hex<<*(pointerArray+i)<<endl;}                       //cout<<hex<<pointerArray[i]<<endl;
+}
+
+int main() 
+{   uint16_t myNumbers[5]={0xF1, 0xF2, 0xF3, 0xF4, 0xF5};                //uint8_t is unsigned short alias name
+    uint16_t length_of_Array=sizeof(myNumbers)/sizeof(uint16_t);
+    
+    displayArray(myNumbers, length_of_Array);                   //displayArray(myNumbers+2, length_of_Array-2)  for print last three elemments
+}
+

@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{   int data = 100;
+    int *pointerVar = &data;
+    cout<<&data<<"\n";
+    cout<<pointerVar<<"\n";
+    cout<<*pointerVar<<"\n";
+    
+    *pointerVar=60;
+    cout<<*pointerVar;
+}

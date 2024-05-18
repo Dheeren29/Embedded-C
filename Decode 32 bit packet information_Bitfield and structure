@@ -1,0 +1,42 @@
+
+//WE ARE GOING TO USE THE BITFIELD CONCEPT TO REDUCE THE SIZE OF THE Packetframe STRUCTURE (4 bytes) which is not used in the previous program.
+#include <iostream>
+using namespace std;
+
+struct Packetframe
+{   uint32_t Crc:2;                         //the datatype changed here to uint32_t as from previous program
+    uint32_t Status:1; 
+    uint32_t Payload:12; 
+    uint32_t Bat:3;                     
+    uint32_t Sensor:3; 
+    uint32_t Longaddr:8; 
+    uint32_t Shortaddr:2; 
+    uint32_t Addrmode:1;                                                        //declare bits 
+};
+
+int main()
+{   uint32_t Packetdata;
+    cout<<"Enter the packet data ";
+    cin>>hex>>Packetdata;
+    
+    Packetframe frame1;
+    frame1.Crc = (Packetdata & 0x3);                                              //we can also write 0x3 as 0x00000003
+    frame1.Status = ((Packetdata>>2)&0x1);
+    frame1.Payload = (Packetdata>>3)&0xfff;
+    frame1.Bat = (Packetdata>>15)&0x7;
+    frame1.Sensor = (Packetdata>>18)&0x7;
+    frame1.Longaddr = (Packetdata>>21)&0xff;
+    frame1.Shortaddr = (Packetdata>>29)&0x3;
+    frame1.Addrmode = (Packetdata>>31)&0x1;
+    
+    cout<<"Crc "<<hex<<frame1.Crc<<endl;                                     //without hex keyword, values prited in decimal format
+    cout<<"Status "<<hex<<frame1.Status<<endl;                              
+    cout<<"Payload "<<hex<<frame1.Payload<<endl;
+    cout<<"Bat "<<hex<<frame1.Bat<<endl;
+    cout<<"Sensor "<<hex<<frame1.Sensor<<endl;
+    cout<<"Longaddr "<<hex<<frame1.Longaddr<<endl;
+    cout<<"Shortaddr "<<hex<<frame1.Shortaddr<<endl;
+    cout<<"Addrmode "<<hex<<frame1.Addrmode<<endl;
+    
+    cout<<"size of struct variable "<<sizeof(frame1)<<endl;           
+}

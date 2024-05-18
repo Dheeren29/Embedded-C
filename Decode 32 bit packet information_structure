@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+struct Packetframe
+{   uint8_t Crc; 
+    uint8_t Status; 
+    uint16_t Payload; 
+    uint8_t Bat;                                                        //Be aware uint8_t is a char alias datatype
+    uint8_t Sensor; 
+    uint8_t Longaddr; 
+    uint8_t Shortaddr; 
+    uint8_t Addrmode;
+};
+
+int main()
+{   uint32_t Packetdata;
+    cout<<"Enter the packet data ";
+    cin>>hex>>Packetdata;
+    
+    Packetframe frame1;
+    frame1.Crc = (uint8_t) (Packetdata & 0x3);                                              //we can also write 0x3 as 0x00000003
+    frame1.Status = (uint8_t) ((Packetdata>>2)&0x1);
+    frame1.Payload = (uint16_t)(Packetdata>>3)&0xfff;
+    frame1.Bat = (uint8_t)(Packetdata>>15)&0x7;
+    frame1.Sensor = (uint8_t)(Packetdata>>18)&0x7;
+    frame1.Longaddr = (uint8_t)(Packetdata>>21)&0xff;
+    frame1.Shortaddr = (uint8_t)(Packetdata>>29)&0x3;
+    frame1.Addrmode = (uint8_t)(Packetdata>>31)&0x1;
+    
+    cout<<"Crc "<<hex<<(short)frame1.Crc<<endl;                                     //without hex keyword, values prited in decimal format
+    cout<<"Status "<<hex<<(short)frame1.Status<<endl;                               //short typecasting needed bcz the uint8_t is char alias
+    cout<<"Payload "<<hex<<frame1.Payload<<endl;
+    cout<<"Bat "<<hex<<(short)frame1.Bat<<endl;
+    cout<<"Sensor "<<hex<<(short)frame1.Sensor<<endl;
+    cout<<"Longaddr "<<hex<<(short)frame1.Longaddr<<endl;
+    cout<<"Shortaddr "<<hex<<(short)frame1.Shortaddr<<endl;
+    cout<<"Addrmode "<<hex<<(short)frame1.Addrmode<<endl;
+    
+    cout<<"size of struct variable "<<dec<<sizeof(frame1)<<endl;            //we used 'dec' keyword here bcz the previous cout statements used the hex keyword, otherwise no need to use 'dec'
+}

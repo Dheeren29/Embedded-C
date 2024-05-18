@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+union Packetframe
+{   uint32_t packetdata;
+    struct
+    {   uint32_t Crc : 2;
+        uint32_t Status : 1;
+        uint32_t Payload : 12;
+        uint32_t Bat : 3;
+        uint32_t Sensor : 3;
+        uint32_t Longaddr : 8;
+        uint32_t Shortaddr : 2;
+        uint32_t Addrmode : 1;
+    } packetFields;
+};
+
+int main()
+{   Packetframe frame1;
+    cout << "Enter the Packet data: ";
+    cin >> hex >> frame1.packetdata;
+
+    cout << "Crc: " << hex << frame1.packetFields.Crc << endl;
+    cout << "Status: " << hex << frame1.packetFields.Status << endl;
+    cout << "Payload: " << hex << frame1.packetFields.Payload << endl;
+    cout << "Bat: " << hex << frame1.packetFields.Bat << endl;
+    cout << "Sensor: " << hex << frame1.packetFields.Sensor << endl;
+    cout << "Longaddr: " << hex << frame1.packetFields.Longaddr << endl;
+    cout << "Shortaddr: " << hex << frame1.packetFields.Shortaddr << endl;
+    cout << "Addrmode: " << hex << frame1.packetFields.Addrmode << endl;
+
+    cout << "Size of struct is: " << sizeof(frame1) << endl;
+}
+
